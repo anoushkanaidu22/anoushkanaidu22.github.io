@@ -1,1 +1,1 @@
-This is my website built using Hugo and hosted on GitHub Pages. 
+This website is currently a work in progress!
