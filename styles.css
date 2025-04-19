@@ -1,0 +1,74 @@
+/* Main body styles */
+body {
+    /* BACKGROUND COLOR - Change this value to any color you want */
+    background-color: #f5f5f5;
+    
+    /* FONT - Change this to any font you prefer */
+    font-family: Arial, sans-serif;
+    
+    /* MARGINS - This removes default margins */
+    margin: 0;
+    padding: 0;
+    
+    /* Text color - Change this for all text on the page */
+    color: #333333;
+}
+
+/* Container for all content */
+.container {
+    /* MARGINS - This centers content and adds spacing around edges */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+/* Your name heading */
+#name {
+    /* Center align the text */
+    text-align: center;
+    
+    /* FONT SIZE - Change this value to make your name larger or smaller */
+    font-size: 48px;
+    
+    /* MARGINS - Space below your name */
+    margin-bottom: 40px;
+}
+
+/* Your blurb paragraph */
+#blurb {
+    /* FONT SIZE - Change this value to adjust your paragraph text size */
+    font-size: 18px;
+    
+    /* Line height for better readability */
+    line-height: 1.6;
+    
+    /* MARGINS - Space around your blurb */
+    margin-bottom: 40px;
+}
+
+/* Links section */
+#links {
+    text-align: center;
+}
+
+/* Individual link styling */
+.link {
+    /* FONT SIZE - Change this value to adjust link text size */
+    font-size: 18px;
+    
+    /* Link color and appearance */
+    color: #0077cc;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 8px 12px;
+    border: 1px solid #0077cc;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Link hover effect */
+.link:hover {
+    background-color: #0077cc;
+    color: white;
+    transition: all 0.3s ease;
+}
