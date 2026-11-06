@@ -1,88 +1,58 @@
 /* Main body styles */
 body {
-    /* Full-screen fixed background with a semi-transparent dark gradient scrim */
     background: 
-        linear-gradient(rgba(14, 14, 18, 0.75), rgba(10, 10, 14, 0.85)),
-        url('assets/gotham-bg.webp') no-repeat center center fixed;
+        linear-gradient(rgba(10, 10, 12, 0.2), rgba(10, 10, 12, 0.45)),
+        url('gotham-bg.webp') no-repeat center center fixed;
     background-size: cover;
     
-    /* Clean modern sans-serif stack */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'IM Fell English', 'Times New Roman', Georgia, serif;
     
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    
-    /* Light off-white text for contrast against the dark background */
-    color: #f0f0f2;
-}
-
-/* Container for all content */
-.container {
-    max-width: 680px;
-    margin: 80px auto;
-    padding: 48px 40px;
-    
-    /* Frosted card effect to lift content cleanly off the city art */
-    background: rgba(18, 18, 22, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Your name heading */
-#name {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin: 0 0 24px 0;
-    color: #ffffff;
-}
-
-/* Your blurb paragraph */
-#blurb {
-    font-size: 17px;
-    line-height: 1.7;
-    color: #d1d1d6;
-    margin-bottom: 36px;
-    text-align: left;
-}
-
-#blurb p {
-    margin: 0 0 16px 0;
-}
-
-/* Links section */
-#links {
-    text-align: center;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
+    
+    color: #f6f6f6;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Individual link styling */
-.link {
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: #f5f5f7;
-    text-decoration: none;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
-    display: inline-block;
-    transition: all 0.2s ease;
+/* Container directly on the background */
+.container {
+    max-width: 640px;
+    padding: 24px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
-/* Link hover effect */
-.link:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.35);
+/* Name heading */
+#name {
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin: 0 0 18px 0;
     color: #ffffff;
-    transform: translateY(-1px);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Blurb */
+#blurb p {
+    font-size: 21px;
+    line-height: 1.6;
+    font-style: italic;
+    color: #e8e8ea;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 600px) {
+    #name {
+        font-size: 38px;
+    }
+    #blurb p {
+        font-size: 18px;
+    }
 }
