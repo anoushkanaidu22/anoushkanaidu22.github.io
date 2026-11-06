@@ -1,31 +1,53 @@
-/* Main body styles */
-body {
-    background: 
-        linear-gradient(rgba(10, 10, 12, 0.2), rgba(10, 10, 12, 0.45)),
-        url('assets/gotham-bg.webp') no-repeat center center fixed;
-    background-size: cover;
-    
-    font-family: 'IM Fell English', 'Times New Roman', Georgia, serif;
-    
+/* Base document settings */
+html, body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+    /* Seamless dark tone prevents gray flash during mobile overscroll */
+    background-color: #0a0a0c;
     color: #f6f6f6;
+    font-family: 'IM Fell English', 'Times New Roman', Georgia, serif;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Container directly on the background */
+/* Fixed full-bleed artwork layer (immune to mobile viewport shifts and scrolling) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Dynamic viewport unit accounts for disappearing mobile toolbars */
+    height: 100vh;
+    height: 100dvh;
+    
+    background: 
+        linear-gradient(rgba(10, 10, 12, 0.2), rgba(10, 10, 12, 0.45)),
+        url('gotham-bg.webp') no-repeat center center;
+    background-size: cover;
+    
+    z-index: -1;
+    pointer-events: none;
+    transform: translateZ(0); /* Hardware acceleration for smooth scrolling */
+}
+
+/* Layout container */
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Content wrapper that scrolls freely over the fixed artwork */
 .container {
     max-width: 640px;
-    padding: 24px;
+    width: 100%;
+    padding: 60px 24px;
+    box-sizing: border-box;
     text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
 }
 
 /* Name heading */
@@ -38,7 +60,7 @@ body {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Blurb */
+/* Blurb text */
 #blurb p {
     font-size: 21px;
     line-height: 1.6;
@@ -48,11 +70,15 @@ body {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
+/* Mobile responsive adjustments */
 @media (max-width: 600px) {
     #name {
         font-size: 38px;
     }
     #blurb p {
         font-size: 18px;
+    }
+    .container {
+        padding: 40px 20px;
     }
 }
