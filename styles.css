@@ -2,7 +2,6 @@
 html, body {
     margin: 0;
     padding: 0;
-    /* Seamless dark tone prevents gray flash during mobile overscroll */
     background-color: #0a0a0c;
     color: #f6f6f6;
     font-family: 'IM Fell English', 'Times New Roman', Georgia, serif;
@@ -24,29 +23,30 @@ body::before {
         url('assets/gotham-bg.webp') no-repeat center center;
     background-size: cover;
     
-    z-index: 0; /* Changed from -1: keeps the artwork above the body background */
+    z-index: 0;
     pointer-events: none;
     transform: translateZ(0);
 }
 
-/* Layout container */
+/* Layout container using flexbox flow */
 body {
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
     box-sizing: border-box;
 }
 
-/* Content wrapper */
+/* Main text container centered in viewport */
 .container {
-    position: relative; /* Enables z-index layering */
-    z-index: 1;         /* Keeps text sitting cleanly above the artwork */
+    position: relative;
+    z-index: 2;
     max-width: 640px;
     width: 100%;
-    padding: 60px 24px;
+    padding: 40px 24px;
+    margin: auto 0; /* Keeps name/blurb perfectly centered vertically */
     box-sizing: border-box;
     text-align: center;
 }
@@ -71,6 +71,27 @@ body {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
+/* Artwork credit footer (statically locked to layout flow) */
+.artwork-credit {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    padding: 16px 20px 20px;
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: rgba(235, 235, 240, 0.55);
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.artwork-credit em {
+    font-style: italic;
+    color: rgba(235, 235, 240, 0.75);
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 600px) {
     #name {
@@ -79,7 +100,8 @@ body {
     #blurb p {
         font-size: 18px;
     }
-    .container {
-        padding: 40px 20px;
+    .artwork-credit {
+        font-size: 10px;
+        padding: 12px 16px 16px;
     }
 }
