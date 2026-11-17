@@ -1,4 +1,4 @@
-CTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,24 +13,14 @@ CTYPE html>
 <body>
     <main class="container">
         <header class="intro">
-            <div class="title-wrapper">
-                <!-- Vertical Column of Circles in the Left Margin -->
-                <nav class="circle-nav" aria-label="Site navigation">
-                    <a href="/" class="nav-item" aria-label="home">
-                        <span class="nav-label">home</span>
-                        <span class="nav-dot"></span>
-                    </a>
+            <h1 id="name">Anoushka Naidu</h1>
 
-                    <a href="/sketches" class="nav-item" aria-label="sketches">
-                        <span class="nav-label">sketches</span>
-                        <span class="nav-dot"></span>
-                    </a>
-                </nav>
+            <div class="lead-wrapper">
+                <!-- Populated automatically by nav.js -->
+                <nav id="site-nav" class="circle-nav" aria-label="Site navigation"></nav>
 
-                <h1 id="name">Anoushka Naidu</h1>
+                <p class="lead">Hello, welcome to my website. The motivation of this project is to create a personalized space to present my opinions and creations. This is a work in progress! Please check back in the future for updates.</p>
             </div>
-
-            <p class="lead">Hello, welcome to my website. The motivation of this project is to create a personalized space to present my opinions and creations. This is a work in progress! Please check back in the future for updates.</p>
         </header>
 
         <section class="content-section">
@@ -45,6 +35,8 @@ CTYPE html>
             <p>The background image is a production background painting from <em>Batman: The Animated Series</em> (1992). I grew up watching DC’s catalogue of animated shows and reading their comic books. I wanted to choose something meaningful yet aesthetically pleasing, so I settled on this painting of Gotham’s skyline in the night.</p>
         </section>
     </main>
+
+    <script src="nav.js"></script>
 </body>
 </html>
 

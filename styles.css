@@ -1,4 +1,3 @@
-/* Direct font import backup so IM Fell English always loads */
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
 
 /* Base document settings */
@@ -58,30 +57,30 @@ body {
     margin-bottom: 52px;
 }
 
-/* Wrapper anchors the margin circles to the top-left of your name without indenting it */
-.title-wrapper {
-    position: relative;
-    margin: 0 0 22px 0;
-}
-
 #name {
     font-size: 48px;
     font-weight: 400;
     letter-spacing: 0.03em;
-    margin: 0;
+    margin: 0 0 22px 0;
     color: #ffffff;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 0 28px rgba(0, 0, 0, 0.6);
+}
+
+/* Wrapper anchors the margin circles to the left of the first paragraph below the title */
+.lead-wrapper {
+    position: relative;
+    margin: 0;
 }
 
 /* Vertical Stack of Circles in the Left Margin */
 .circle-nav {
     position: absolute;
     right: 100%;
-    top: 22px; /* Aligns first circle with the vertical center of your name */
-    margin-right: 24px; /* Distance between the circles and your name */
+    top: 6px; /* Aligns first circle with the first line of the paragraph below the title */
+    margin-right: 24px;
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Vertical spacing between stacked circles */
+    gap: 18px;
     z-index: 2;
 }
 
@@ -92,23 +91,40 @@ body {
     align-items: center;
     justify-content: flex-end;
     text-decoration: none;
-    padding: 4px; /* Expands hover target around the dot */
+    padding: 4px;
 }
 
-/* The Circle Dot */
+/* The Circle Dot (Inactive default state) */
 .nav-dot {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
     flex-shrink: 0;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Hover state for any dot */
 .nav-item:hover .nav-dot,
 .nav-item:focus-visible .nav-dot {
+    background-color: #ffffff;
     transform: scale(1.25);
+}
+
+/* Active Page Indicator: full brightness + subtle outer ring */
+.nav-item.active .nav-dot {
+    background-color: #ffffff;
+    box-shadow: 
+        0 0 0 3px rgba(10, 10, 12, 0.65),
+        0 0 0 4px rgba(255, 255, 255, 0.6),
+        0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Keep active dot's outer ring intact on hover */
+.nav-item.active:hover .nav-dot,
+.nav-item.active:focus-visible .nav-dot {
+    transform: scale(1.15);
 }
 
 /* Word Label (Revealed to the LEFT of its corresponding circle) */
@@ -183,15 +199,15 @@ body {
 
 /* ==========================================================================
    MOBILE & NARROW SCREEN ADJUSTMENTS
-   On phones, there is no wide left margin, so the circles sit cleanly above
-   your name in a horizontal row with labels revealing to the right.
+   On phones, circles sit in a horizontal row directly below the title and
+   above the first paragraph.
    ========================================================================== */
 @media (max-width: 820px) {
     .circle-nav {
         position: static;
         flex-direction: row;
         margin-right: 0;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
         gap: 16px;
     }
     .nav-label {
