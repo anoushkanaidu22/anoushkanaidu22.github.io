@@ -58,12 +58,9 @@ body {
     margin-bottom: 52px;
 }
 
-/* Title & Circle Navigation Row */
-.title-row {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 18px;
+/* Wrapper anchors the margin circles to the top-left of your name without indenting it */
+.title-wrapper {
+    position: relative;
     margin: 0 0 22px 0;
 }
 
@@ -76,13 +73,26 @@ body {
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 0 28px rgba(0, 0, 0, 0.6);
 }
 
-/* Circle Navigation Container */
+/* Vertical Stack of Circles in the Left Margin */
 .circle-nav {
+    position: absolute;
+    right: 100%;
+    top: 22px; /* Aligns first circle with the vertical center of your name */
+    margin-right: 24px; /* Distance between the circles and your name */
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Vertical spacing between stacked circles */
+    z-index: 2;
+}
+
+/* Individual Circle + Hover Label Pair */
+.nav-item {
+    position: relative;
     display: flex;
     align-items: center;
-    position: relative;
-    padding: 8px 4px;
-    flex-shrink: 0;
+    justify-content: flex-end;
+    text-decoration: none;
+    padding: 4px; /* Expands hover target around the dot */
 }
 
 /* The Circle Dot */
@@ -92,55 +102,39 @@ body {
     border-radius: 50%;
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
     flex-shrink: 0;
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.circle-nav:hover .nav-dot,
-.circle-nav:focus-within .nav-dot {
-    transform: scale(1.2);
+.nav-item:hover .nav-dot,
+.nav-item:focus-visible .nav-dot {
+    transform: scale(1.25);
 }
 
-/* Links Container (Expands to the LEFT of the circle into the open margin) */
-.nav-links {
+/* Word Label (Revealed to the LEFT of its corresponding circle) */
+.nav-label {
     position: absolute;
     right: 100%;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding-right: 14px;
+    padding-right: 12px;
+    font-size: 19px;
+    font-style: italic;
+    color: #f6f6f6;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(0, 0, 0, 0.7);
     
     /* Hidden state */
     opacity: 0;
-    transform: translateX(8px);
+    transform: translateX(6px);
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* Revealed state on hover or focus */
-.circle-nav:hover .nav-links,
-.circle-nav:focus-within .nav-links {
+.nav-item:hover .nav-label,
+.nav-item:focus-visible .nav-label {
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
-}
-
-.nav-links a {
-    font-size: 19px;
-    font-style: italic;
-    color: #f6f6f6;
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(0, 0, 0, 0.7);
-    transition: color 0.2s ease;
-    white-space: nowrap;
-}
-
-.nav-links a:hover {
-    color: #ffffff;
-    text-decoration: underline;
-    text-underline-offset: 4px;
 }
 
 .lead {
@@ -187,40 +181,40 @@ body {
     color: #ffffff;
 }
 
-/* Mobile & Narrow Screen Responsive Adjustments */
-@media (max-width: 860px) {
-    .nav-links {
+/* ==========================================================================
+   MOBILE & NARROW SCREEN ADJUSTMENTS
+   On phones, there is no wide left margin, so the circles sit cleanly above
+   your name in a horizontal row with labels revealing to the right.
+   ========================================================================== */
+@media (max-width: 820px) {
+    .circle-nav {
+        position: static;
+        flex-direction: row;
+        margin-right: 0;
+        margin-bottom: 14px;
+        gap: 16px;
+    }
+    .nav-label {
         position: static;
         padding-right: 0;
-        margin-right: 0;
+        padding-left: 8px;
         max-width: 0;
         overflow: hidden;
         transform: translateX(0);
-        transition: max-width 0.3s ease, opacity 0.25s ease, margin-right 0.3s ease;
+        transition: max-width 0.3s ease, opacity 0.25s ease;
     }
-
-    .circle-nav:hover .nav-links,
-    .circle-nav:focus-within .nav-links {
-        max-width: 300px;
-        margin-right: 12px;
+    .nav-item:hover .nav-label,
+    .nav-item:focus-visible .nav-label {
+        max-width: 150px;
     }
 }
 
 @media (max-width: 600px) {
     .container {
-        padding: 64px 24px 88px;
-    }
-    .title-row {
-        gap: 14px;
+        padding: 56px 24px 88px;
     }
     #name {
-        font-size: 36px;
-    }
-    .nav-links {
-        gap: 12px;
-    }
-    .nav-links a {
-        font-size: 17px;
+        font-size: 38px;
     }
     .lead {
         font-size: 18px;

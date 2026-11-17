@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+CTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,14 +13,20 @@
 <body>
     <main class="container">
         <header class="intro">
-            <div class="title-row">
-                <!-- Hoverable Circle Navigation (to the LEFT of your name) -->
+            <div class="title-wrapper">
+                <!-- Vertical Column of Circles in the Left Margin -->
                 <nav class="circle-nav" aria-label="Site navigation">
-                    <div class="nav-links">
-                        <a href="index.html">home</a>
-                        <!-- Add future tabs here, e.g.: <a href="art.html">art</a> -->
-                    </div>
-                    <span class="nav-dot" tabindex="0" aria-hidden="true"></span>
+                    <a href="/" class="nav-item" aria-label="home">
+                        <span class="nav-label">home</span>
+                        <span class="nav-dot"></span>
+                    </a>
+
+                    <!-- Add future vertical circles below by copying this block:
+                    <a href="/art" class="nav-item" aria-label="art">
+                        <span class="nav-label">art</span>
+                        <span class="nav-dot"></span>
+                    </a>
+                    -->
                 </nav>
 
                 <h1 id="name">Anoushka Naidu</h1>
@@ -43,3 +49,4 @@
     </main>
 </body>
 </html>
+
