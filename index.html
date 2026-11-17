@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+CTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,19 @@
 <body>
     <main class="container">
         <header class="intro">
-            <h1 id="name">Anoushka Naidu</h1>
+            <div class="title-row">
+                <h1 id="name">Anoushka Naidu</h1>
+                
+                <!-- Hoverable Circle Navigation -->
+                <nav class="circle-nav" aria-label="Site navigation">
+                    <div class="nav-links">
+                        <a href="index.html">home</a>
+                        <!-- Add future tabs here, e.g.: <a href="art.html">art</a> -->
+                    </div>
+                    <span class="nav-dot" tabindex="0" aria-hidden="true"></span>
+                </nav>
+            </div>
+
             <p class="lead">Hello, welcome to my website. The motivation of this project is to create a personalized space to present my opinions and creations. This is a work in progress! Please check back in the future for updates.</p>
         </header>
 
@@ -31,3 +43,4 @@
     </main>
 </body>
 </html>
+
