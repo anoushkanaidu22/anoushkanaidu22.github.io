@@ -1,5 +1,8 @@
+/* Direct font import backup so IM Fell English always loads */
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
 
-dy {
+/* Base document settings */
+html, body {
     margin: 0;
     padding: 0;
     background-color: #0a0a0c;
@@ -59,8 +62,8 @@ body {
 .title-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 18px;
     margin: 0 0 22px 0;
 }
 
@@ -78,7 +81,8 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 6px 0; /* Expands vertical hover target slightly */
+    padding: 8px 4px;
+    flex-shrink: 0;
 }
 
 /* The Circle Dot */
@@ -98,12 +102,14 @@ body {
     transform: scale(1.2);
 }
 
-/* Links Container (Revealed to the Left of the Circle) */
+/* Links Container (Expands to the LEFT of the circle into the open margin) */
 .nav-links {
+    position: absolute;
+    right: 100%;
     display: flex;
     align-items: center;
     gap: 18px;
-    margin-right: 14px;
+    padding-right: 14px;
     
     /* Hidden state */
     opacity: 0;
@@ -112,7 +118,7 @@ body {
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* Revealed state on hover or focus/tap */
+/* Revealed state on hover or focus */
 .circle-nav:hover .nav-links,
 .circle-nav:focus-within .nav-links {
     opacity: 1;
@@ -127,7 +133,7 @@ body {
     text-decoration: none;
     letter-spacing: 0.03em;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(0, 0, 0, 0.7);
-    transition: color 0.2s ease, opacity 0.2s ease;
+    transition: color 0.2s ease;
     white-space: nowrap;
 }
 
@@ -181,17 +187,37 @@ body {
     color: #ffffff;
 }
 
-/* Mobile responsive adjustments */
+/* Mobile & Narrow Screen Responsive Adjustments */
+@media (max-width: 860px) {
+    .nav-links {
+        position: static;
+        padding-right: 0;
+        margin-right: 0;
+        max-width: 0;
+        overflow: hidden;
+        transform: translateX(0);
+        transition: max-width 0.3s ease, opacity 0.25s ease, margin-right 0.3s ease;
+    }
+
+    .circle-nav:hover .nav-links,
+    .circle-nav:focus-within .nav-links {
+        max-width: 300px;
+        margin-right: 12px;
+    }
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 64px 24px 88px;
+    }
+    .title-row {
+        gap: 14px;
     }
     #name {
         font-size: 36px;
     }
     .nav-links {
         gap: 12px;
-        margin-right: 10px;
     }
     .nav-links a {
         font-size: 17px;
