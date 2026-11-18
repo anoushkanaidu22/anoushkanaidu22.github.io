@@ -1,3 +1,4 @@
+/* Direct font import backup so IM Fell English always loads */
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
 
 /* Base document settings */
@@ -28,6 +29,28 @@ body::before {
     z-index: 0;
     pointer-events: none;
     transform: translateZ(0);
+}
+
+/* Full-screen dim overlay triggered when hovering over a nav circle */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background-color: rgba(5, 5, 8, 0.68);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+/* Activate dark scrim when any navigation circle is hovered or focused */
+body:has(.nav-item:hover)::after,
+body:has(.nav-item:focus-visible)::after {
+    opacity: 1;
 }
 
 /* Scrollable document flow */
@@ -64,6 +87,7 @@ body {
     margin: 0 0 22px 0;
     color: #ffffff;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 0 28px rgba(0, 0, 0, 0.6);
+    transition: opacity 0.35s ease;
 }
 
 /* Wrapper anchors the margin circles to the left of the first paragraph below the title */
@@ -72,16 +96,16 @@ body {
     margin: 0;
 }
 
-/* Vertical Stack of Circles in the Left Margin */
+/* Vertical Stack of Circles in the Left Margin (Sits above the dim overlay) */
 .circle-nav {
     position: absolute;
     right: 100%;
-    top: 6px; /* Aligns first circle with the first line of the paragraph below the title */
+    top: 6px;
     margin-right: 24px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    z-index: 2;
+    z-index: 10; /* Stays brightly lit above the body::after dim overlay */
 }
 
 /* Individual Circle + Hover Label Pair */
@@ -94,7 +118,7 @@ body {
     padding: 4px;
 }
 
-/* The Circle Dot (Inactive default state) */
+/* The Circle Dot (Inactive default state: white/gray) */
 .nav-dot {
     width: 10px;
     height: 10px;
@@ -102,48 +126,61 @@ body {
     background-color: rgba(255, 255, 255, 0.45);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
     flex-shrink: 0;
-    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.28s ease, background-color 0.28s ease, box-shadow 0.28s ease;
 }
 
-/* Hover state for any dot */
-.nav-item:hover .nav-dot,
-.nav-item:focus-visible .nav-dot {
-    background-color: #ffffff;
-    transform: scale(1.25);
-}
-
-/* Active Page Indicator: full brightness + subtle outer ring */
+/* Active Page Double-Circle Indicator (Default unhovered state) */
 .nav-item.active .nav-dot {
     background-color: #ffffff;
     box-shadow: 
-        0 0 0 3px rgba(10, 10, 12, 0.65),
-        0 0 0 4px rgba(255, 255, 255, 0.6),
+        0 0 0 3px rgba(10, 10, 12, 0.75),
+        0 0 0 4px rgba(255, 255, 255, 0.65),
         0 2px 12px rgba(0, 0, 0, 0.9);
 }
 
-/* Keep active dot's outer ring intact on hover */
-.nav-item.active:hover .nav-dot,
-.nav-item.active:focus-visible .nav-dot {
-    transform: scale(1.15);
+/* Bat-Signal Yellow Glow on Hover (Inactive circles) */
+.nav-item:hover .nav-dot,
+.nav-item:focus-visible .nav-dot {
+    background-color: #f5c518;
+    transform: scale(1.28);
+    box-shadow: 
+        0 0 8px rgba(245, 197, 24, 0.95),
+        0 0 20px rgba(245, 197, 24, 0.7),
+        0 0 36px rgba(245, 197, 24, 0.45);
 }
 
-/* Word Label (Revealed to the LEFT of its corresponding circle) */
+/* Bat-Signal Yellow Glow on Hover (Preserving the double-circle ring on active page) */
+.nav-item.active:hover .nav-dot,
+.nav-item.active:focus-visible .nav-dot {
+    background-color: #f5c518;
+    transform: scale(1.2);
+    box-shadow: 
+        0 0 0 3px rgba(10, 10, 12, 0.85),
+        0 0 0 4px rgba(245, 197, 24, 0.85),
+        0 0 12px rgba(245, 197, 24, 0.95),
+        0 0 26px rgba(245, 197, 24, 0.65);
+}
+
+/* Word Label (Bat-Signal Yellow + Glow when revealed) */
 .nav-label {
     position: absolute;
     right: 100%;
-    padding-right: 12px;
+    padding-right: 14px;
     font-size: 19px;
     font-style: italic;
-    color: #f6f6f6;
+    color: #f5c518;
     letter-spacing: 0.03em;
     white-space: nowrap;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 18px rgba(0, 0, 0, 0.7);
+    text-shadow: 
+        0 0 8px rgba(245, 197, 24, 0.85),
+        0 0 20px rgba(245, 197, 24, 0.55),
+        0 2px 6px rgba(0, 0, 0, 0.95);
     
     /* Hidden state */
     opacity: 0;
     transform: translateX(6px);
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.28s ease, transform 0.28s ease;
 }
 
 .nav-item:hover .nav-label,
@@ -160,11 +197,13 @@ body {
     color: #ededef;
     margin: 0;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.65);
+    transition: opacity 0.35s ease;
 }
 
 /* Sections */
 .content-section {
     margin-bottom: 44px;
+    transition: opacity 0.35s ease;
 }
 
 .content-section:last-child {
@@ -197,6 +236,16 @@ body {
     color: #ffffff;
 }
 
+/* Dim all page text noticeably when hovering over a navigation circle */
+body:has(.nav-item:hover) #name,
+body:has(.nav-item:hover) .lead,
+body:has(.nav-item:hover) .content-section,
+body:has(.nav-item:focus-visible) #name,
+body:has(.nav-item:focus-visible) .lead,
+body:has(.nav-item:focus-visible) .content-section {
+    opacity: 0.25;
+}
+
 /* ==========================================================================
    MOBILE & NARROW SCREEN ADJUSTMENTS
    On phones, circles sit in a horizontal row directly below the title and
@@ -217,7 +266,7 @@ body {
         max-width: 0;
         overflow: hidden;
         transform: translateX(0);
-        transition: max-width 0.3s ease, opacity 0.25s ease;
+        transition: max-width 0.3s ease, opacity 0.28s ease;
     }
     .nav-item:hover .nav-label,
     .nav-item:focus-visible .nav-label {
